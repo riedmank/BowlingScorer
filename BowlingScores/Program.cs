@@ -12,7 +12,9 @@ namespace BowlingScores
         {
             CollectBowlingScores();
         }
-
+        /// <summary>
+        /// Collects input from the user and uses score method
+        /// </summary>
         public static void CollectBowlingScores()
         {
             int?[][] scores = new int?[10][];
@@ -27,6 +29,7 @@ namespace BowlingScores
             scores[8] = new int?[2];
             scores[9] = new int?[3];
 
+            // Holds user input
             string currentBall;
 
             Console.WriteLine("Welcome to Bowling Scorer! Please enter your scores (X for strike and / for spare in second frame).");
@@ -39,7 +42,6 @@ namespace BowlingScores
                     scores[i][0] = 10;
                     scores[i][1] = null;
                     Console.WriteLine("Congratulations! You got a Strike.");
-                    continue;
                 }
                 else
                 {
