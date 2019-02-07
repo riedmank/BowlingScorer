@@ -15,17 +15,17 @@ namespace BowlingScores
 
         public static void CollectBowlingScores()
         {
-            string[][] scores = new string[10][];
-            scores[0] = new string[2];
-            scores[1] = new string[2];
-            scores[2] = new string[2];
-            scores[3] = new string[2];
-            scores[4] = new string[2];
-            scores[5] = new string[2];
-            scores[6] = new string[2];
-            scores[7] = new string[2];
-            scores[8] = new string[2];
-            scores[9] = new string[3];
+            int?[][] scores = new int?[10][];
+            scores[0] = new int?[2];
+            scores[1] = new int?[2];
+            scores[2] = new int?[2];
+            scores[3] = new int?[2];
+            scores[4] = new int?[2];
+            scores[5] = new int?[2];
+            scores[6] = new int?[2];
+            scores[7] = new int?[2];
+            scores[8] = new int?[2];
+            scores[9] = new int?[3];
 
             string currentBall;
 
@@ -36,24 +36,24 @@ namespace BowlingScores
                 currentBall = Console.ReadLine();
                 if (currentBall == "X")
                 {
-                    scores[i][0] = "10";
+                    scores[i][0] = 10;
                     scores[i][1] = null;
                     Console.WriteLine("Congratulations! You got a Strike.");
                     continue;
                 }
                 else
                 {
-                    scores[i][0] = currentBall;
+                    scores[i][0] = int.Parse(currentBall);
                     Console.WriteLine($"Enter Frame {i + 1} Ball Two.");
                     currentBall = Console.ReadLine();
                     if (currentBall == "/")
                     {
-                        scores[i][1] = (10 - int.Parse(scores[i][0])).ToString();
+                        scores[i][1] = 10 - scores[i][0];
                         Console.WriteLine("You got a Spare. Respectable.");
                     }
                     else
                     {
-                        scores[i][1] = currentBall;
+                        scores[i][1] = int.Parse(currentBall);
                     }
                 }
             }
@@ -62,37 +62,37 @@ namespace BowlingScores
             currentBall = Console.ReadLine();
             if (currentBall == "X")
             {
-                scores[9][0] = "10";
+                scores[9][0] = 10;
                 Console.WriteLine("Congratulations! You got a Strike.");
                 Console.WriteLine("Enter Frame 10 Ball Two.");
                 currentBall = Console.ReadLine();
-                scores[9][1] = currentBall == "X" ? "10" : currentBall;
+                scores[9][1] = currentBall == "X" ? 10 : int.Parse(currentBall);
                 if (currentBall == "X")
                     Console.WriteLine("Congratulations! You got a Strike.");
                 Console.WriteLine("Enter Frame 10 Ball Three.");
                 currentBall = Console.ReadLine();
-                scores[9][2] = currentBall == "X" ? "10" : currentBall;
+                scores[9][2] = currentBall == "X" ? 10 : int.Parse(currentBall);
                 if (currentBall == "X")
                     Console.WriteLine("Congratulations! You got a Strike.");
             }
             else
             {                
-                scores[9][0] = currentBall;
+                scores[9][0] = int.Parse(currentBall);
                 Console.WriteLine("Enter Frame 10 Ball Two.");
                 currentBall = Console.ReadLine();
                 if (currentBall == "/")
                 {
-                    scores[9][1] = (10 - int.Parse(scores[9][0])).ToString();
+                    scores[9][1] = 10 - scores[9][0];
                     Console.WriteLine("You got a Spare. Respectable.");
                     Console.WriteLine("Enter Frame 10 Ball Three.");
                     currentBall = Console.ReadLine();
-                    scores[9][2] = currentBall == "X" ? "10" : currentBall;
+                    scores[9][2] = currentBall == "X" ? 10 : int.Parse(currentBall);
                     if (currentBall == "X")
                         Console.WriteLine("Congratulations! You got a Strike.");
                 }
                 else
                 {
-                    scores[9][1] = currentBall == "X" ? "10" : currentBall;
+                    scores[9][1] = currentBall == "X" ? 10 : int.Parse(currentBall);
                     if (currentBall == "X")
                         Console.WriteLine("Congratulations! You got a Strike.");
                 }
@@ -103,7 +103,7 @@ namespace BowlingScores
         /// <summary>
         /// This method scores a bowling game
         /// </summary>
-        public static void BowlingScores(string[][] scores)
+        public static void BowlingScores(int?[][] scores)
         {          
             //// Frame One
             //scores[0][0] = "10";
@@ -135,50 +135,50 @@ namespace BowlingScores
             //// Frame Ten
             //scores[9][0] = "6";
             //scores[9][1] = "2";
-            //scores[9][2] = "4";
+            //scores[9][2] = null;
             
-            int totalScore = 0;
-            int ball1 = 0;
-            int ball2 = 0;
-            int ball3 = 0;
+            int? totalScore = 0;
+            int? ball1 = 0;
+            int? ball2 = 0;
+            int? ball3 = 0;
             for (int i = 0; i < scores.Length; i++)
             {
                 Console.WriteLine($"Frame: {i + 1}");
                 // Check for strike on last frame
-                if (i == scores.Length - 1 && scores[i][0] == "10")
+                if (i == scores.Length - 1 && scores[i][0] == 10)
                 {
-                    ball1 = int.Parse(scores[i][0]);
-                    ball2 = int.Parse(scores[i][1]);
-                    ball3 = int.Parse(scores[i][2]);
+                    ball1 = scores[i][0];
+                    ball2 = scores[i][1];
+                    ball3 = scores[i][2];
                     totalScore += ball1 + ball2 + ball3;
                     Console.WriteLine($"Ball One: {ball1}");
                     Console.WriteLine($"Ball Two: {ball2}");
                     Console.WriteLine($"Ball Three: {ball3}");
                 }
                 // Check for spare on last frame
-                else if (i == scores.Length - 1 && (int.Parse(scores[i][0]) + int.Parse(scores[i][1]) == 10))
+                else if (i == scores.Length - 1 && (scores[i][0] + scores[i][1] == 10))
                 {
-                    ball1 = int.Parse(scores[i][0]);
-                    ball2 = int.Parse(scores[i][1]);
-                    ball3 = int.Parse(scores[i][2]);
+                    ball1 = scores[i][0];
+                    ball2 = scores[i][1];
+                    ball3 = scores[i][2];
                     totalScore += ball1 + ball2 + ball3;
                     Console.WriteLine($"Ball One: {ball1}");
                     Console.WriteLine($"Ball Two: {ball2}");
                     Console.WriteLine($"Ball Three: {ball3}");
                 }
                 // Check for strike
-                else if (scores[i][0] == "10")
+                else if (scores[i][0] == 10)
                 {
-                    ball1 = int.Parse(scores[i][0]);
-                    ball2 = int.Parse(scores[i + 1][0]);
+                    ball1 = scores[i][0];
+                    ball2 = scores[i + 1][0];
                     ball3 = 0;
                     if (scores[i + 1][1] == null)
                     {
-                        ball3 = int.Parse(scores[i + 2][0]);
+                        ball3 = scores[i + 2][0];
                     }
                     else
                     {
-                        ball3 = int.Parse(scores[i + 1][1]);
+                        ball3 = scores[i + 1][1];
                     }
                     totalScore += ball1 + ball2 + ball3;
                     Console.WriteLine($"Ball One: {ball1}");
@@ -186,11 +186,11 @@ namespace BowlingScores
                     Console.WriteLine($"Ball Three: {ball3}");
                 }
                 // Check for spare
-                else if (int.Parse(scores[i][0]) + int.Parse(scores[i][1]) == 10)
+                else if (scores[i][0] + scores[i][1] == 10)
                 {
-                    ball1 = int.Parse(scores[i][0]);
-                    ball2 = int.Parse(scores[i][1]);
-                    ball3 = int.Parse(scores[i + 1][0]);
+                    ball1 = scores[i][0];
+                    ball2 = scores[i][1];
+                    ball3 = scores[i + 1][0];
                     totalScore += ball1 + ball2 + ball3;
                     Console.WriteLine($"Ball One: {ball1}");
                     Console.WriteLine($"Ball Two: {ball2}");
@@ -198,8 +198,8 @@ namespace BowlingScores
                 }
                 else
                 {
-                    ball1 = int.Parse(scores[i][0]);
-                    ball2 = int.Parse(scores[i][1]);
+                    ball1 = scores[i][0];
+                    ball2 = scores[i][1];
                     totalScore += ball1 + ball2;
                     Console.WriteLine($"Ball One: {ball1}");
                     Console.WriteLine($"Ball Two: {ball2}");
