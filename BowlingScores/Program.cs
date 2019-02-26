@@ -10,8 +10,9 @@ namespace BowlingScores
     {
         static void Main(string[] args)
         {
-            CollectBowlingScores();
+            BowlingScorerImproved();
         }
+
         /// <summary>
         /// Collects input from the user and uses score method
         /// </summary>
@@ -209,6 +210,108 @@ namespace BowlingScores
                 Console.WriteLine($"Total so far: {totalScore}");
             }
             Console.WriteLine($"Your final score: {totalScore}");
+        }
+
+        /// <summary>
+        /// Scores a bowling game in real time
+        /// </summary>
+        public static void BowlingScorerImproved()
+        {
+            Console.WriteLine("Welcome to Bowling Scorer.");
+            int score = 0;
+            string current = "", oneBack = "", twoBack = "";
+            
+            for (int i = 1; i < 10; i++)
+            {
+                Console.WriteLine($"Frame {i} ball 1. Enter your score (X for Strike):");
+                current = Console.ReadLine();
+                if (twoBack == "X")
+                {
+                    score += current == "X" ? 10 : int.Parse(current);
+                }
+                if (oneBack == "X" || oneBack == "/")
+                {
+                    score += current == "X" ? 10 : int.Parse(current);
+                }
+                if (current == "X")
+                {
+                    score += 10;
+                    twoBack = oneBack;
+                    oneBack = current;
+                    Console.WriteLine($"Score so far: {score}.");
+                    continue;
+                }
+                score += int.Parse(current);
+
+                twoBack = oneBack;
+                oneBack = current;
+
+                Console.WriteLine($"Frame {i} ball 2. Enter your score (/ for Spare):");
+                current = Console.ReadLine();
+                if (twoBack == "X")
+                {
+                    score += current == "/" ? 10 - int.Parse(oneBack) : int.Parse(current);
+                }
+                score += current == "/" ? 10 - int.Parse(oneBack) : int.Parse(current);
+
+                twoBack = oneBack;
+                oneBack = current;
+
+                Console.WriteLine($"Score so far: {score}.");
+            }
+
+            Console.WriteLine("Frame 10 ball 1. Enter your score (X for Strike):");
+            current = Console.ReadLine();
+
+            if (twoBack == "X")
+            {
+                score += current == "X" ? 10 : int.Parse(current);
+            }
+            if (oneBack == "X" || oneBack == "/")
+            {
+                score += current == "X" ? 10 : int.Parse(current);
+            }
+            score += current == "X" ? 10 : int.Parse(current);
+
+            twoBack = oneBack;
+            oneBack = current;
+
+            Console.WriteLine("Frame 10 ball 2. Enter your score (X for Strike, / for Spare):");
+            current = Console.ReadLine();
+
+            if (twoBack == "X")
+            {
+                if (current == "X")
+                    score += 10;
+                else if (current == "/")
+                    score += 10 - int.Parse(oneBack);
+                else
+                    score += int.Parse(current);
+            }
+            if (current == "/")
+                score += 10 - int.Parse(oneBack);
+            else
+                score += current == "X" ? 10 : int.Parse(current);
+
+            twoBack = oneBack;
+            oneBack = current;
+
+            if (oneBack == "X" || oneBack == "/")
+            {
+                Console.WriteLine("Frame 10 ball 3. Enter your score (X for Strike):");
+                current = Console.ReadLine();
+
+                if (twoBack == "X")
+                {
+                    score += current == "X" ? 10 : int.Parse(current);
+                }
+                if (oneBack == "/")
+                {
+                    score += current == "X" ? 10 : int.Parse(current);
+                }
+            }
+
+            Console.WriteLine($"Final score: {score}.");
         }
     }
 }
