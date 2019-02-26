@@ -226,13 +226,9 @@ namespace BowlingScores
                 Console.WriteLine($"Frame {i} ball 1. Enter your score (X for Strike):");
                 current = Console.ReadLine();
                 if (twoBack == "X")
-                {
                     score += current == "X" ? 10 : int.Parse(current);
-                }
                 if (oneBack == "X" || oneBack == "/")
-                {
                     score += current == "X" ? 10 : int.Parse(current);
-                }
                 if (current == "X")
                 {
                     score += 10;
@@ -242,43 +238,28 @@ namespace BowlingScores
                     continue;
                 }
                 score += int.Parse(current);
-
                 twoBack = oneBack;
                 oneBack = current;
-
                 Console.WriteLine($"Frame {i} ball 2. Enter your score (/ for Spare):");
                 current = Console.ReadLine();
                 if (twoBack == "X")
-                {
                     score += current == "/" ? 10 - int.Parse(oneBack) : int.Parse(current);
-                }
                 score += current == "/" ? 10 - int.Parse(oneBack) : int.Parse(current);
-
                 twoBack = oneBack;
                 oneBack = current;
-
                 Console.WriteLine($"Score so far: {score}.");
             }
-
             Console.WriteLine("Frame 10 ball 1. Enter your score (X for Strike):");
             current = Console.ReadLine();
-
             if (twoBack == "X")
-            {
                 score += current == "X" ? 10 : int.Parse(current);
-            }
             if (oneBack == "X" || oneBack == "/")
-            {
                 score += current == "X" ? 10 : int.Parse(current);
-            }
             score += current == "X" ? 10 : int.Parse(current);
-
             twoBack = oneBack;
             oneBack = current;
-
             Console.WriteLine("Frame 10 ball 2. Enter your score (X for Strike, / for Spare):");
             current = Console.ReadLine();
-
             if (twoBack == "X")
             {
                 if (current == "X")
@@ -292,25 +273,17 @@ namespace BowlingScores
                 score += 10 - int.Parse(oneBack);
             else
                 score += current == "X" ? 10 : int.Parse(current);
-
             twoBack = oneBack;
             oneBack = current;
-
             if (oneBack == "X" || oneBack == "/")
             {
                 Console.WriteLine("Frame 10 ball 3. Enter your score (X for Strike):");
                 current = Console.ReadLine();
-
                 if (twoBack == "X")
-                {
                     score += current == "X" ? 10 : int.Parse(current);
-                }
                 if (oneBack == "/")
-                {
                     score += current == "X" ? 10 : int.Parse(current);
-                }
             }
-
             Console.WriteLine($"Final score: {score}.");
         }
     }
