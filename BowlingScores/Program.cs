@@ -234,7 +234,7 @@ namespace BowlingScores
                     score += 10;
                     twoBack = oneBack;
                     oneBack = current;
-                    Console.WriteLine($"Score so far: {score}.");
+                    Console.WriteLine($"Potential score so far: {score}. (May change with future frames)");
                     continue;
                 }
                 score += int.Parse(current);
@@ -247,7 +247,7 @@ namespace BowlingScores
                 score += current == "/" ? 10 - int.Parse(oneBack) : int.Parse(current);
                 twoBack = oneBack;
                 oneBack = current;
-                Console.WriteLine($"Score so far: {score}.");
+                Console.WriteLine($"Potential score so far: {score}. (May change with future frames)");
             }
             Console.WriteLine("Frame 10 ball 1. Enter your score (X for Strike):");
             current = Console.ReadLine();
@@ -285,6 +285,18 @@ namespace BowlingScores
                     score += current == "X" ? 10 : int.Parse(current);
             }
             Console.WriteLine($"Final score: {score}.");
+            Console.ReadLine();
         }
     }
 }
+
+// Test case 1: All Strikes
+// Test case 2: All zeros
+// Test case 3: All ones
+// Test case 4: "Normal" game with combination of Strikes, Spares, and open frames
+// Test case 5: Zeros on all ball 1 and Spare on ball 2
+// Test case 6: Strike in odd frames and zeroes in even frames
+// Test case 7: Spare in odd frames and Strike in even frames
+// Test case 8: Strike in odd frames and Spare in even frames
+// Test case 9: All fives
+// Test case 10: All Spares with 9 on ball 1
