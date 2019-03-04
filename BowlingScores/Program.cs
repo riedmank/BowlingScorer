@@ -289,14 +289,3 @@ namespace BowlingScores
         }
     }
 }
-
-// Test case 1: All Strikes
-// Test case 2: All zeros
-// Test case 3: All ones
-// Test case 4: "Normal" game with combination of Strikes, Spares, and open frames
-// Test case 5: Zeros on all ball 1 and Spare on ball 2
-// Test case 6: Strike in odd frames and zeroes in even frames
-// Test case 7: Spare in odd frames and Strike in even frames
-// Test case 8: Strike in odd frames and Spare in even frames
-// Test case 9: All fives
-// Test case 10: All Spares with 9 on ball 1
