@@ -234,7 +234,7 @@ namespace BowlingScores
                     score += 10;
                     twoBack = oneBack;
                     oneBack = current;
-                    Console.WriteLine($"Score so far: {score}.");
+                    Console.WriteLine($"Potential score so far: {score}. (May change with future frames)");
                     continue;
                 }
                 score += int.Parse(current);
@@ -247,7 +247,7 @@ namespace BowlingScores
                 score += current == "/" ? 10 - int.Parse(oneBack) : int.Parse(current);
                 twoBack = oneBack;
                 oneBack = current;
-                Console.WriteLine($"Score so far: {score}.");
+                Console.WriteLine($"Potential score so far: {score}. (May change with future frames)");
             }
             Console.WriteLine("Frame 10 ball 1. Enter your score (X for Strike):");
             current = Console.ReadLine();
@@ -285,6 +285,7 @@ namespace BowlingScores
                     score += current == "X" ? 10 : int.Parse(current);
             }
             Console.WriteLine($"Final score: {score}.");
+            Console.ReadLine();
         }
     }
 }
